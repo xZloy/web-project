@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up RAGE </title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div class="registro">
+        <h1>Registro de usuario</h1>
+        <h4>Rellena este formulario para registrarte con nosotros</h4>
+        <form action="registro.php" method="POST">
+            <label>Nombre completo</label>
+            <input type="text" name="name" required>
+            <label>Nombre de usuario</label>
+            <input type="text" name="user" required>
+            <label>Correo electrónico</label>
+            <input type="email" name="email" required>
+            <label >Direccion</label>
+            <input type="text" name="address" required>
+            <label >Telefono</label>
+            <input type="tel" name="tel" required>
+            <label >Contraseña</label>
+            <input type="password" name="pswd" required>
+            <input type="submit" value="Registrarse">
+        </form>
+    </div>
+    <p class="p-2">Al dar click en registrar, aceptas nuestros <br>
+        <a href="#">Terminos y condiciones</a> Ya tienes cuenta? <a href="logform.html">Login</a></p>
+</body>
+</html>
