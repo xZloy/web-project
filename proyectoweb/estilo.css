@@ -80,3 +80,12 @@ p{
     /*color: yellow;*/
 
 }
+
+/*Estilos registro de productos*/
+.registroproducto{
+    width: 360px;
+    height: 540px;
+    margin: auto;
+    background-color: #CD966C;
+    border-radius: 3px;
+}

@@ -285,11 +285,11 @@ ul{
     width: 90%;
     margin: auto;
     background-color: #CD966C;
-    border-radius: 10px;
+    /*border-radius: 10px;*/
     color: #5B1F00;
     display: flex;
-    flex-flow: row wrap;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 1.5rem;
     margin-bottom: 2%;
     margin-top: 2%;
     display: grid;
@@ -370,4 +370,16 @@ div.galeria-prods img{
 }
 .fotofounder img{
     width: 40%;
+}
+
+/*Administracion de productos*/
+.admiprods{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
