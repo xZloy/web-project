@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="logo">
-            <img src="RAGE_LOGO_CAFE_V1.png" alt="Logo de RAGE">
+            <a href="index.html"><img src="RAGE_LOGO_CAFE_V1.png" alt="Logo de RAGE"></a>
         </div>
         <nav>
                 <a href="index.html" class="nav-link">Inicio</a>
@@ -22,13 +22,14 @@
                 <a href="nostros.html" class="nav-link">Nosotros</a>
         </nav>
     </header>
+    
+    <div class="productos-caja">
     <?php 
         include 'conn.php';
         $sql = mysqli_query($con, "SELECT * FROM Producto");
         while($row = mysqli_fetch_array($sql)){
 
         ?>
-    <div class="productos-caja">
         <div class="galeria-prods">
             <div class="foto-prods">
                 <img src="<?php echo $row['IMG_Prod']?>" alt="RAGE TSHIRT">
@@ -36,12 +37,16 @@
             <div class="pie-prods">
                 <p><?php echo $row['NombreProd']?><br/><?php echo $row['DescProd']?>
                 <br><?php echo $row['PrecioProd']?></p>
-                <a href=""><i class="fa-solid fa-plus"></i></a>
+                <form action="agregar_al_carrito.php" method="post">
+                    <input type="hidden" name="producto_id" value="<?php echo $row['ID_prod']?>">
+                    <button type="submit" class="agregar-carrito">Agregar al carrito</button>
+                </form>
             </div>
         </div>
-         
+        <?php } ?>
     </div>
-    <?php } ?>
+
+    
     
     <footer class="footer">
         <div class="contenedor">
