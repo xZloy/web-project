@@ -361,6 +361,7 @@ div.galeria-prods img{
     flex-direction: column;
     align-items: center; /* Alinea el contenido al centro horizontalmente */
     background-color: #CD966C;
+    background-color: #D1BB9E;
 }
 
 .pie-prods p {
@@ -378,6 +379,7 @@ div.galeria-prods img{
 
 .agregar-carrito {
     background-color: #5B1F00;
+    background-color: #A79277;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -390,6 +392,7 @@ div.galeria-prods img{
 
 .agregar-carrito:hover {
     background-color: #2c1104;
+    background-color: #645848;
 }
 /*CSS PARA NOSOTROS RAGE (nosotros.html)*/
 .about-us{
@@ -502,40 +505,49 @@ div.galeria-prods img{
 
 
 /*ADMIN PRODUCTOS*/
+.product-table-container {
+    overflow-x: auto;
+    margin: 0 auto;
+    width: 90%; /* Adjust the width as needed */
+}
+
 .product-table {
-    max-width: 100%;
+    width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
 }
 
-.header {
-    padding: 10px;
-    border-bottom: 1px solid #5B1F00;
-    text-align: left;
-    background-color: #5B1F00;
-}
-
-.product-row:hover {
-    background-color: #5B1F00;
-}
-
-.name, .description, .price, .category, .actions {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+.product-table th,
+.product-table td {
+    padding: 8px;
     text-align: left;
 }
 
-.actions a {
-    text-decoration: none;
-    padding: 5px 10px;
-    margin: 0 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.product-table th {
     background-color: #f2f2f2;
-    color: #333;
-    font-size: 14px;
+    background-color: #D1BB9E;
 }
 
-.actions a:hover {
+.product-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+    background-color: #D1BB9E;
+}
+
+.product-table tbody tr:hover {
     background-color: #ddd;
+    background-color: #EAD8C0;
+}
+
+@media screen and (max-width: 600px) {
+    .product-table-container {
+        overflow-x: auto;
+    }
+
+    .product-table {
+        width: 100%;
+    }
+
+    .product-table th,
+    .product-table td {
+        padding: 4px;
+    }
 }
