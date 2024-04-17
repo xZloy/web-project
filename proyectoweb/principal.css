@@ -8,7 +8,9 @@
 }
 body{
     background-color: #344a72;
-    background-color: #FFD7AB;
+    /*background-color: #FFD7AB;*/
+    /*background-color: #ccc;*/
+    background-color: #FFF2E1;
     line-height: 1.5;
 }
 .dividir{
@@ -27,7 +29,8 @@ body{
     border-radius: 10px;
     padding-top: 5%;
     border-style: hidden;
-    background-color: #CD966C;
+    /*background-color: #CD966C;*/
+    background-color: #D1BB9E;
 }
 .caja-mision img{
     display: block;
@@ -65,7 +68,8 @@ body{
     border-radius: 10px;
     padding-top: 5%;
     border-style: hidden;
-    background-color: #CD966C;
+    /*background-color: #CD966C;*/
+    background-color: #D1BB9E;
 }
 .caja-vision h2{
     color: #5B1F00;
@@ -81,7 +85,8 @@ body{
     padding-top: 10px;
     width: 90%;
     margin: auto;
-    background-color: #CD966C;
+    /*background-color: #CD966C;*/
+    background-color: #D1BB9E;
     border-radius: 10px;
     color: #5B1F00;
     display: grid;
@@ -101,6 +106,7 @@ input[type="button"] {
     margin-top: 20px;
     border: none;
     background-color: #FFD7AB;
+    background-color: #A79277;
     color: #5B1F00;
     font-size: 16px;
     border-radius: 10px;
@@ -174,6 +180,7 @@ header{
     padding: 10px;
     align-items: center;
     background-color: #CD966C;
+    background-color: #A79277;
     justify-content: space-between;
 }
 .logo{
@@ -188,6 +195,7 @@ header{
 .contenedor{
      max-width: 1170px;
      background-color: #CD966C;
+     background-color: #A79277;
      margin: auto;
 }
 .row{
@@ -198,7 +206,8 @@ ul{
     list-style: none;
 }
 .footer{
-    background-color:#CD966C ;
+    /*background-color:#CD966C ;*/
+    background-color: #A79277;
     padding: 70px 0;
 }
 .footer-col{
@@ -279,6 +288,7 @@ ul{
     width: 90%;
     margin: auto;
     background-color: #CD966C;
+    background-color: #D1BB9E;
     border-radius: 10px;
     color: #5B1F00;
     display: flex;
@@ -493,20 +503,20 @@ div.galeria-prods img{
 
 /*ADMIN PRODUCTOS*/
 .product-table {
-    width: 100%;
+    max-width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
 .header {
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #5B1F00;
     text-align: left;
-    background-color: #f2f2f2;
+    background-color: #5B1F00;
 }
 
 .product-row:hover {
-    background-color: #f5f5f5;
+    background-color: #5B1F00;
 }
 
 .name, .description, .price, .category, .actions {

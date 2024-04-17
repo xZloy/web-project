@@ -36,7 +36,7 @@
             </div>
             <div class="pie-prods">
                 <p><?php echo $row['NombreProd']?><br/><?php echo $row['DescProd']?>
-                <br><?php echo $row['PrecioProd']?></p>
+                <br>$<?php echo $row['PrecioProd']?></p>
                 <form action="agregar_al_carrito.php" method="post">
                     <input type="hidden" name="producto_id" value="<?php echo $row['ID_prod']?>">
                     <button type="submit" class="agregar-carrito">Agregar al carrito</button>

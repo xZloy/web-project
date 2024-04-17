@@ -1,6 +1,7 @@
 body{
     background-color: #344a72;
     background-color: #FFD7AB;
+    background-color: #FFF2E1;
     font-family: 'Montserrat';
 }
 
@@ -9,6 +10,8 @@ body{
     height: 620px;
     margin: auto;
     background-color: #CD966C;
+    background-color: #A79277;
+    background-color: #D1BB9E;
     border-radius: 3px;
 }
 @media screen and (max-width:768px) {
@@ -26,6 +29,7 @@ body{
     margin: auto;
     border-radius: 3px;
     background-color: #CD966C;
+    background-color: #D1BB9E;
 }
 h1{
     text-align: center;
@@ -60,6 +64,7 @@ input[type="submit"]{
     border: none;
     background-color: #344a72;
     background-color: black;
+    background-color: #A79277;
     color: white;
     font-size: 20px;
     cursor: pointer;
