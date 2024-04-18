@@ -11,7 +11,7 @@
 <body>
     <header>
         <div class="logo">
-            <a href="index.html"><img src="RAGE_LOGO_CAFE_V1.png" alt="Logo de RAGE"></a>
+            <a href="index.php"><img src="RAGE_LOGO_CAFE_V1.png" alt="Logo de RAGE"></a>
         </div>
         <nav>
                 <a href="#" class="nav-link">Inicio</a>
@@ -19,6 +19,12 @@
                 <a href="logform.html" class="nav-link">Iniciar sesion</a>
                 <a href="regform.html" class="nav-link">Registrarse</a>
                 <a href="nostros.html" class="nav-link">Nosotros</a>
+                <?php 
+                    if(isset($_GET['email'])){
+                        $email = $_GET['email'];
+                    }
+                ?>
+                <a href="pdf.php?email=<?php echo "$email"; ?>"><i class="fa-solid fa-cart-shopping"></i></a>
         </nav>
         
     </header>

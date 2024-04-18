@@ -6,7 +6,7 @@ include "conn.php";
         if($sql)
         {
             $msg = "Sesion iniciada con el correo: ".$email; 
-            header("refresh:5; url=index.html");
+            header("refresh:1; url=index.php?email=$email");
             echo '<div>'.$msg.'</div>';
             echo '<p>Serás redirigido al índice en 5 segundos.</p>';
         }else{

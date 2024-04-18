@@ -12,10 +12,10 @@
 <body>
     <header>
         <div class="logo">
-            <a href="index.html"><img src="RAGE_LOGO_CAFE_V1.png" alt="Logo de RAGE"></a>
+            <a href="index.php"><img src="RAGE_LOGO_CAFE_V1.png" alt="Logo de RAGE"></a>
         </div>
         <nav>
-                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="index.php" class="nav-link">Inicio</a>
                 <a href="#" class="nav-link">Productos</a>
                 <a href="logform.html" class="nav-link">Iniciar sesion</a>
                 <a href="regprodform.html" class="nav-link">Registrarse</a>
