@@ -1,16 +1,37 @@
 <?php
 include "conn.php";
+session_start();
+/*if(!isset($_SESSION['correo'])){
+    header('location: index.php');
+    exit();
+}else{*/
     $email = $_POST['email'];
     $pswd = $_POST['password'];
-        $sql = mysqli_query($con,"SELECT * FROM  user WHERE emailUser = '$email' AND pswdUser = '$pswd'");
-        if($sql)
-        {
-            $msg = "Sesion iniciada con el correo: ".$email; 
-            header("refresh:1; url=index.php?email=$email");
-            echo '<div>'.$msg.'</div>';
-            echo '<p>Serás redirigido al índice en 5 segundos.</p>';
-        }else{
-            echo "Error al iniciar sesion";
-        }
-    
+    $sql = "SELECT * FROM  user WHERE emailUser = '$email' AND pswdUser = '$pswd'";
+        $result = mysqli_query($con, $sql);
+                if($result && mysqli_num_rows($result) > 0)
+                {    
+                    $row = mysqli_fetch_assoc($result); 
+                    $username = $row['nameUser'];
+                    $_SESSION['correo'] = $email;
+                    $_SESSION['username'] = $username;
+
+                    if($_SESSION['username'] == 'admin'){
+                        header("refresh:0.5; url=admin.php");
+                    }else{
+                        header("refresh:0.5; url=index.php");
+                    }
+                    
+                    //echo 'Bienvenido'.$_SESSION['username'];
+                }else{
+                    echo "Error al iniciar sesion";
+                }
+   // }
 ?>
+    
+
+    
+
+    
+    
+    

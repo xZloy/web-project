@@ -551,3 +551,31 @@ div.galeria-prods img{
         padding: 4px;
     }
 }
+
+/*Carrito*/
+.table-container table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.table-container th,td{
+    padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+}
+.table-container th{
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+.table-container td{
+    background-color: #fff;
+}
+.table-container tbody tr:nth-child(even){
+    background-color: #f9f9f9;
+}
+.table-container tbody tr:hover{
+    background-color: #f5f5f5;
+}

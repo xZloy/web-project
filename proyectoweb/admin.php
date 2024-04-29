@@ -15,9 +15,8 @@
             <img src="RAGE_LOGO_CAFE_V1.png" alt="Logo de RAGE">
         </div>
         <nav>
-                <a href=""><i class="fa-solid fa-file-pdf"></i></a>
                 <a href="regprodform.html" class="nav-link">Registrar productos</a>
-                <a href=""><i class="fa-solid fa-right-from-bracket"></i></a>
+                <a href="logout.php" class="nav-link"><i class="fa-solid fa-right-from-bracket"></i></a>
         </nav>
     </header>
     <div class="product-table-container">
@@ -40,10 +39,10 @@
                             <td class="id"><?php echo $row['ID_prod']; ?></td>
                             <td class="name""><?php echo $row['NombreProd']; ?></td>
                             <td class="description"><?php echo $row['DescProd']; ?></td>
-                            <td class="price">$<?php echo $row['PrecioProd']; ?></td>
+                            <td class="price">$<?php echo $row['PrecioProduct']; ?></td>
                             <td class="actions">
-                                <a href="editar_producto.php?id=<?php echo $row['ID_prod']; ?>"><i class="fa-regular fa-pen-to-square"></i></a>
-                                <a href="eliminar_producto.php?id=<?php echo $row['ID_prod']; ?>"><i class="fa-solid fa-trash"></i></a>
+                                <a href="editar_producto.php?id=<?php echo $row['ID_prod']; ?>" class="nav-link"><i class="fa-regular fa-pen-to-square"></i></a>
+                                <a href="eliminar_producto.php?id=<?php echo $row['ID_prod']; ?>" class="nav-link"><i class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>
                     <?php } ?>

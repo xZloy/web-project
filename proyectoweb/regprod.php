@@ -7,7 +7,7 @@ include "conn.php";
     $imgurl = $_POST['urlproduct'];
 
     $sql = mysqli_query($con,"INSERT INTO producto 
-    (ID_prod,NombreProd,DescProd,IMG_Prod,PrecioProd,ID_Cat)
+    (ID_prod,NombreProd,DescProd,IMG_Prod,PrecioProduct,ID_Cat)
     VALUES (0,'$nameprod','$description','$imgurl','$cost','$category')");
     if($sql){
         $msg = "Producto registrado en RAGE database"; 

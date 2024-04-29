@@ -1,8 +1,5 @@
-<?php 
+<?php
     session_start();
-    if(isset($_SESSION['username'])){
-        $user = $_SESSION['username'];
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,10 +7,9 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAGE productos</title>
-    <link rel="stylesheet" href="principal.css?1.2">
+    <link rel="stylesheet" href="principal.css?1.3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    <title>RAGE</title>
 </head>
 <body>
     <header>
@@ -22,45 +18,51 @@
         </div>
         <nav>
                 <a href="index.php" class="nav-link">Inicio</a>
-                <a href="#" class="nav-link">Productos</a>
+                <a href="productos.php" class="nav-link">Productos</a>
                 <a href="nostros.php" class="nav-link">Nosotros</a>
                 <?php if(isset($_SESSION['username'])): ?>
-                    <a href="perfil.php" class="nav-link"><i class="fa-solid fa-user"></i></a>
-                    <a href="logout.php" class="nav-link"><i class="fa-solid fa-right-from-bracket"></i></a>
-                    <a href="cartvisualizer.php" class="nav-link"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="perfil.php" class="nav-link"><i class="fa-solid fa-user"></i></a>
+                <a href="logout.php" class="nav-link"><i class="fa-solid fa-right-from-bracket"></i></a>
+                
                 <?php else: ?>
                 <a href="logform.html" class="nav-link">Iniciar sesión</a>
                 <a href="regform.html" class="nav-link">Registrarse</a>
                 <?php endif; ?>
+                
         </nav>
+        
     </header>
-    
-    <div class="productos-caja">
-    <?php 
-        include 'conn.php';
-        $sql = mysqli_query($con, "SELECT * FROM Producto");
-        while($row = mysqli_fetch_array($sql)){
 
-        ?>
-        <div class="galeria-prods">
-            <div class="foto-prods">
-                <img src="<?php echo $row['IMG_Prod']?>" alt="RAGE TSHIRT">
-            </div>
-            <div class="pie-prods">
-                <p><?php echo $row['NombreProd']?><br/><?php echo $row['DescProd']?>
-                <br>$<?php echo $row['PrecioProduct']?></p>
-                <form action="agregar_al_carrito.php" method="post">
-                    <input type="hidden" name="producto_id" value="<?php echo $row['ID_prod']?>">
-                    <input type="hidden" name="boton_id" value="boton_<?php echo $row['ID_prod']?>">
-                    <button type="submit" class="agregar-carrito">Agregar al carrito</button>
-                </form>
-            </div>
-        </div>
-        <?php } ?>
-    </div>
-
-    
-    
+    <h2>Carrito de Compras</h2>
+    <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        if (isset($_SESSION['carrito'])) {
+                            foreach ($_SESSION['carrito'] as $boton_id => $producto) {
+                                echo "<tr>";
+                                echo "<td>{$producto['NombreProd']}</td>";
+                                echo "<td>$ {$producto['PrecioProd']}</td>";
+                                echo "<td>{$producto['Cantidad']}</td>";
+                                echo "<td>$ {$producto['Subtotal']}</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='5'>El carrito está vacío</td></tr>";
+                        }
+                    ?>
+                </tbody>
+            </table>
+                        <a href="pdf.php" target="_blank" class="boton" class="nav-link"><i class="fa-solid fa-file-pdf"></i></a>
+                </div>
     <footer class="footer">
         <div class="contenedor">
             <div class="row">

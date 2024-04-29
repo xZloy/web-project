@@ -1,7 +1,14 @@
+<?php 
+    session_start();
+    if(isset($_SESSION['username'])){
+        $user = $_SESSION['username'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RAGE nosotros</title>
@@ -10,21 +17,27 @@
 <body>
     <header>
         <div class="logo">
-            <a href="index.php"><img src="RAGE_LOGO_CAFE_V1.png" alt="Logo de RAGE"></a>
+            <a href="index.php"><img src="img/RAGE_LOGO_CAFE_V1.png" alt="Logo de RAGE"></a>
         </div>
         <nav>
                 <a href="index.php" class="nav-link">Inicio</a>
-                <a href="productos.html" class="nav-link">Productos</a>
-                <a href="logform.html" class="nav-link">Iniciar sesion</a>
-                <a href="regform.html" class="nav-link">Registrarse</a>
+                <a href="productos.php" class="nav-link">Productos</a>
                 <a href="#" class="nav-link">Nosotros</a>
+                <?php if(isset($_SESSION['username'])): ?>
+                <a href="perfil.php" class="nav-link"><i class="fa-solid fa-user"></i></a>
+                <a href="logout.php" class="nav-link"><i class="fa-solid fa-right-from-bracket"></i></a>
+                <a href="cartvisualizer" class="nav-link"><i class="fa-solid fa-cart-shopping"></i></a>
+                <?php else: ?>
+                <a href="logform.html" class="nav-link">Iniciar sesión</a>
+                <a href="regform.html" class="nav-link">Registrarse</a>
+                <?php endif; ?>
         </nav>
     </header>
 
     <div class="about-us">
         <section>
             <div class="baner">
-                <img src="DISPONIBLE_AHORA (1).png" alt="">
+                <img src="img/DISPONIBLE_AHORA (1).png" alt="">
 
             </div>
         </section>
@@ -48,12 +61,12 @@
                     <p>Desarrollador de software</p>
                 </div>
                 <div class="fotofounder">
-                    <img src="TSHIRT_WHITE_FRONT-removebg-preview.png" alt="Jesus">    
+                    <img src="img/TSHIRT_WHITE_FRONT-removebg-preview.png" alt="Jesus">    
                 </div>
             </div>
             <div class="founders">
                 <div class="fotofounder">
-                    <img src="TSHIRT_WHITE_FRONT-removebg-preview.png" alt="Jesus">    
+                    <img src="img/TSHIRT_WHITE_FRONT-removebg-preview.png" alt="Jesus">    
                 </div>
                 <div class="textofounder">
                     <h3>Fabian</h3><br>

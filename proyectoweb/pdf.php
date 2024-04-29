@@ -1,6 +1,11 @@
 <?php
-if(isset($_GET['email'])){
-    $email = $_GET['email'];
+session_start();
+if(isset($_SESSION['username']) && $_SESSION['correo'])
+{
+
+    $user = $_SESSION['username'];
+    $email = $_SESSION['correo'];
+
     require('fpdf/fpdf.php');
     $x = 10;
     $y = 10;
@@ -8,7 +13,7 @@ if(isset($_GET['email'])){
 
     $pdf->AddPage();
     $pdf->SetXY($x, $y);
-    $pdf->Image('./img/logo.png',150,20,33,0,'PNG','index.php');
+    $pdf->Image('./img/logo.png',150,20,33,0,'PNG','#');
     $pdf->SetFont('Helvetica','B',20);
     $pdf->SetFillColor(255,196,102);
     $pdf->SetDrawColor(255,255,255);
@@ -39,12 +44,54 @@ if(isset($_GET['email'])){
     $pdf->SetXY(25,50);
     $pdf->Cell(60,10,'PARA '); 
     $pdf->SetXY(25,53);
-    $pdf->Cell(60,10,'Email: '.$email.'');   
-    $pdf->SetXY(25,56);
+    $pdf->Cell(60,10,'User: '.$_SESSION['username'].'');
+    $pdf->SetXY(25,57); 
+    $pdf->Cell(60,10,'Email: '.$_SESSION['correo'].'');   
+    $pdf->SetXY(25,58);
 
 
     $y = 40;
+    $pdf->SetDrawColor(0, 0, 0);
+    $pdf->SetTextColor(0, 0, 0);
 
+    $pdf->SetXY(25,85);
+    $pdf->Cell(40,10,'Nombre del producto',1,0,'c');
+    $pdf->Cell(20,10,'Precio ',1,0,'c');
+    $pdf->Cell(20,10,'Cantidad',1,0,'c');
+    $pdf->Cell(20,10,'iva',1,0,'c');
+    $pdf->Cell(25,10,'Subtotal',1,1,'c');
+
+    $Total = 0;
+
+    // Verificar si el carrito está definido en la sesión
+    if (isset($_SESSION['carrito'])) {
+        $pdf->SetXY(25, 95);
+        foreach ($_SESSION['carrito'] as $boton_id => $producto) {
+            $pdf->SetX(25);
+            $pdf->Cell(40, 5, $producto['NombreProd'], 1, 0, "L");
+            $pdf->Cell(20, 5, "$" . $producto['PrecioProd'], 1, 0, "L");
+            $pdf->Cell(20, 5, $producto['Cantidad'], 1, 0, "L");
+            $iva = $producto['PrecioProd'] * 0.16;
+            $pdf->Cell(20, 5, "$" . $iva, 1, 0, "L");
+            $pdf->Cell(25, 5, "$" . $producto['Subtotal'], 1, 1, "L");
+            $Total += $producto['Subtotal'] + $iva;
+        }
+
+        $IVA = $Total * 0.16;
+        $sub = $Total + $IVA;
+
+        $pdf->SetXY(25, 170);
+        $pdf->Cell(30, 5, "Total: $ " . $Total, "", 0, "L");
+
+        $pdf->SetXY(25, 175);
+        $pdf->Cell(30, 5, "IVA: $ " . $IVA, "", 0, "L");
+
+        $pdf->SetXY(25, 180);
+        $pdf->Cell(30, 5, "Subtotal: $" . $sub, "", 0, "L");
+    } else {
+        $pdf->SetXY(25, 95);
+        $pdf->Cell(0, 10, "Carrito vacio", 0, 1);
+    }
     
 
     //footer
@@ -54,11 +101,10 @@ if(isset($_GET['email'])){
     $pdf->Cell(0,5,utf8_decode('El pago se realizará en un lapso de 15 días'),0,0,'C');
     $pdf->Image('./img/barras.png',70,215,80,0,'PNG','');
     //Output the document
-    $pdf->Output("pdfprueba.pdf",'D');
+    $nombredoc = 'Resumen'.$user.Date('F_j_Y').'.'.'pdf';
+    $pdf->Output($nombredoc,'D');
 
-    
-}else{
-    echo "No se ha seleccionado un producto";
+
 }
-
+    
 ?>

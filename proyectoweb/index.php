@@ -1,3 +1,9 @@
+<?php 
+    session_start();
+    if(isset($_SESSION['username'])){
+        $user = $_SESSION['username'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,29 +17,30 @@
 <body>
     <header>
         <div class="logo">
-            <a href="index.php"><img src="RAGE_LOGO_CAFE_V1.png" alt="Logo de RAGE"></a>
+            <a href="index.php"><img src="img/RAGE_LOGO_CAFE_V1.png" alt="Logo de RAGE"></a>
         </div>
         <nav>
                 <a href="#" class="nav-link">Inicio</a>
                 <a href="productos.php" class="nav-link">Productos</a>
-                <a href="logform.html" class="nav-link">Iniciar sesion</a>
+                <a href="nostros.php" class="nav-link">Nosotros</a>
+                <?php if(isset($_SESSION['username'])): ?>
+                <a href="perfil.php" class="nav-link"><i class="fa-solid fa-user"></i></a>
+                <a href="logout.php" class="nav-link"><i class="fa-solid fa-right-from-bracket"></i></a>
+                <a href="cartvisualizer.php" class="nav-link"><i class="fa-solid fa-cart-shopping"></i></a>
+                <?php else: ?>
+                <a href="logform.html" class="nav-link">Iniciar sesión</a>
                 <a href="regform.html" class="nav-link">Registrarse</a>
-                <a href="nostros.html" class="nav-link">Nosotros</a>
-                <?php 
-                    if(isset($_GET['email'])){
-                        $email = $_GET['email'];
-                    }
-                ?>
-                <a href="pdf.php?email=<?php echo "$email"; ?>"><i class="fa-solid fa-cart-shopping"></i></a>
+                <?php endif; ?>
+                
         </nav>
         
     </header>
     <div class="container">
         <div class="slide">
             <ul>
-                <li><img src="DISPONIBLE_AHORA (1).png" alt=""></li>
-                <li><img src="DISPONIBLE_AHORA (1).png" alt=""></li>
-                <li><img src="DISPONIBLE_AHORA (1).png" alt=""></li>
+                <li><img src="img/DISPONIBLE_AHORA (1).png" alt=""></li>
+                <li><img src="img/DISPONIBLE_AHORA (1).png" alt=""></li>
+                <li><img src="img/DISPONIBLE_AHORA (1).png" alt=""></li>
             </ul>
         </div>
     </div>
@@ -69,7 +76,7 @@
         <div class="caja-producto">
                 <div class="galeria">
                     <div class="foto">
-                        <img src="TSHIRT_BLACK_FRONT-removebg-preview.png" alt="RAGE BLACK">
+                        <img src="img/TSHIRT_BLACK_FRONT-removebg-preview.png" alt="RAGE BLACK">
                     </div>
                     <div class="pie">
                         <p>RAGE Black T-shirt</p>
@@ -77,7 +84,7 @@
                 </div>
                 <div class="galeria">
                     <div class="foto">
-                        <img src="TSHIRT_WHITE_FRONT-removebg-preview.png" alt="RAGE BLACK">
+                        <img src="img/TSHIRT_WHITE_FRONT-removebg-preview.png" alt="RAGE BLACK">
                     </div>
                     <div class="pie">
                         <p>RAGE White T-shirt</p>
