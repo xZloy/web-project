@@ -11,7 +11,7 @@ include "conn.php";
     VALUES (0,'$nameprod','$description','$imgurl','$cost','$category')");
     if($sql){
         $msg = "Producto registrado en RAGE database"; 
-        header("refresh:1; url=productos.php");
+        header("refresh:1; url=admin.php?adminID=1");
         echo '<div>'.$msg.'</div>';
         echo '<p>Serás redirigido al índice en 5 segundos.</p>';
     }else{

@@ -1,10 +1,6 @@
 <?php
 include "conn.php";
 session_start();
-/*if(!isset($_SESSION['correo'])){
-    header('location: index.php');
-    exit();
-}else{*/
     $email = $_POST['email'];
     $pswd = $_POST['password'];
     $sql = "SELECT * FROM  user WHERE emailUser = '$email' AND pswdUser = '$pswd'";
@@ -17,7 +13,7 @@ session_start();
                     $_SESSION['username'] = $username;
 
                     if($_SESSION['username'] == 'admin'){
-                        header("refresh:0.5; url=admin.php");
+                        header("refresh:0.5; url=admin.php?adminID=1");
                     }else{
                         header("refresh:0.5; url=index.php");
                     }
