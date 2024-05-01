@@ -20,15 +20,15 @@
         if (isset($_SESSION['carrito'][$boton_id])) {
             // Aumentar la cantidad del producto en el carrito
             $_SESSION['carrito'][$boton_id]['Cantidad']++;
-            $_SESSION['carrito'][$boton_id]['Subtotal'] = $_SESSION['carrito'][$boton_id]['PrecioProd'] * $_SESSION['carrito'][$boton_id]['Cantidad'];
+            $_SESSION['carrito'][$boton_id]['Subtotal'] = $_SESSION['carrito'][$boton_id]['PrecioProduct'] * $_SESSION['carrito'][$boton_id]['Cantidad'];
         } else {
             // Si el producto no está en el carrito, agregarlo con una cantidad inicial de 1
             $producto_carrito = array(
                 'ID_prod' => $producto['ID_prod'],
                 'NombreProd' => $producto['NombreProd'],
-                'PrecioProd' => $producto['PrecioProduct'],
+                'PrecioProduct' => $producto['PrecioProduct'],
                 'Cantidad' => 1,
-                'Subtotal' => $subtotal
+                'Subtotal' => $producto['PrecioProduct']
             );
             $_SESSION['carrito'][$boton_id] = $producto_carrito;
         }
@@ -36,8 +36,7 @@
         print_r($_SESSION['carrito']);
         echo "</pre>";
 
-        // Redirigir a la página del producto o a donde desees después de agregar al carrito
-        //header("Location: productos.php");
+        header("Location: productos.php");
         exit;
     }
 ?>

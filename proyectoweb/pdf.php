@@ -69,9 +69,9 @@ if(isset($_SESSION['username']) && $_SESSION['correo'])
         foreach ($_SESSION['carrito'] as $boton_id => $producto) {
             $pdf->SetX(25);
             $pdf->Cell(40, 5, $producto['NombreProd'], 1, 0, "L");
-            $pdf->Cell(20, 5, "$" . $producto['PrecioProd'], 1, 0, "L");
+            $pdf->Cell(20, 5, "$" . $producto['PrecioProduct'], 1, 0, "L");
             $pdf->Cell(20, 5, $producto['Cantidad'], 1, 0, "L");
-            $iva = $producto['PrecioProd'] * 0.16;
+            $iva = $producto['PrecioProduct'] * 0.16;
             $pdf->Cell(20, 5, "$" . $iva, 1, 0, "L");
             $pdf->Cell(25, 5, "$" . $producto['Subtotal'], 1, 1, "L");
             $Total += $producto['Subtotal'] + $iva;
@@ -92,7 +92,6 @@ if(isset($_SESSION['username']) && $_SESSION['correo'])
         $pdf->SetXY(25, 95);
         $pdf->Cell(0, 10, "Carrito vacio", 0, 1);
     }
-    
 
     //footer
     $pdf->SetXY($x+10,200);
@@ -102,7 +101,45 @@ if(isset($_SESSION['username']) && $_SESSION['correo'])
     $pdf->Image('./img/barras.png',70,215,80,0,'PNG','');
     //Output the document
     $nombredoc = 'Resumen'.$user.Date('F_j_Y').'.'.'pdf';
-    $pdf->Output($nombredoc,'D');
+    $pdf->Output($nombredoc,'F');
+    
+        // Email configuration
+    $to = $email;
+    $from = "no-reply@rage.com";
+    $subject = "Resumen pedido".$user.Date('F_j_Y');
+    $message = "Le adjuntamos el resumen de su pedido";
+
+    // Attachment
+    $filename = $nombredoc;
+    $attachment = chunk_split(base64_encode(file_get_contents($filename)));
+    $boundary = md5(date('r', time()));
+
+    // Headers
+    $headers = "From: $from\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\r\n";
+
+    // Message Body
+    $body = "--$boundary\r\n";
+    $body .= "Content-Type: text/plain; charset=ISO-8859-1\r\n";
+    $body .= "Content-Transfer-Encoding: base64\r\n";
+    $body .= "\r\n" . chunk_split(base64_encode($message)) . "\r\n";
+
+    // Attachment
+    $body .= "--$boundary\r\n";
+    $body .= "Content-Type: application/pdf; name=\"$filename\"\r\n";
+    $body .= "Content-Disposition: attachment; filename=\"$filename\"\r\n";
+    $body .= "Content-Transfer-Encoding: base64\r\n";
+    $body .= "\r\n" . $attachment . "\r\n";
+    $body .= "--$boundary--";
+
+// Send the email
+if (mail($to, $subject, $body, $headers)) {
+    echo "Email sent successfully!";
+} else {
+    echo "Email sending failed.";
+}
+    
 
 
 }

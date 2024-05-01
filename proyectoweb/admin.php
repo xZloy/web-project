@@ -117,17 +117,17 @@
                                 while($row = mysqli_fetch_array($sql)){ 
                         ?>
                     <form action="editarprod.php" method="post">
-                        <input type="hidden" name="id" value="<?php echo $row['ID_prod']; ?>">
+                        <input type="hidden" name="id" placeholder="<?php echo $row['ID_prod']; ?>">
                         <label>Nombre del producto</label>
-                        <input type="text" name="nameprod"  value="<?php echo $row['NombreProd']; ?>" require>
+                        <input type="text" name="nameprod"  placeholder="<?php echo $row['NombreProd']; ?>" require>
                         <label>Descripcion</label>
-                        <input type="text" name="descprod" value="<?php echo $row['DescProd']; ?>" required>
+                        <input type="text" name="descprod" placeholder="<?php echo $row['DescProd']; ?>" required>
                         <label>Precio actual</label>
-                        <input type="text" name="costo" value="<?php echo $row['PrecioProduct']; ?>" required>
+                        <input type="text" name="costo" placeholder="<?php echo $row['PrecioProduct']; ?>" required>
                         <label>Categoria actual</label>
-                        <input type="text" name="categ"  value="<?php echo $row['ID_Cat']; ?>" required>
+                        <input type="text" name="categ"  placeholder="<?php echo $row['ID_Cat']; ?>" required>
                         <label>URL actual</label>
-                        <input type="text" name="urlproduct" value="<?php echo $row['IMG_Prod']; ?>" required>
+                        <input type="text" name="urlproduct" placeholder="<?php echo $row['IMG_Prod']; ?>" required>
                         <input type="submit" value="Editar producto">
                     </form>
                 </div>

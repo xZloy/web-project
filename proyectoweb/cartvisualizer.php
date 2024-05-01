@@ -50,7 +50,7 @@
                             foreach ($_SESSION['carrito'] as $boton_id => $producto) {
                                 echo "<tr>";
                                 echo "<td>{$producto['NombreProd']}</td>";
-                                echo "<td>$ {$producto['PrecioProd']}</td>";
+                                echo "<td>$ {$producto['PrecioProduct']}</td>";
                                 echo "<td>{$producto['Cantidad']}</td>";
                                 echo "<td>$ {$producto['Subtotal']}</td>";
                                 echo "</tr>";
