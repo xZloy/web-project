@@ -579,3 +579,26 @@ div.galeria-prods img{
 .table-container tbody tr:hover{
     background-color: #f5f5f5;
 }
+
+.botonpagar {
+    text-align: center;
+}
+
+.btn-pdf {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #A79277;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 2%;
+}
+
+.btn-pdf:hover {
+    background-color: #645848;
+}
+
+.btn-pdf i {
+    margin-left: 5px;
+}
+

@@ -135,7 +135,9 @@ if(isset($_SESSION['username']) && $_SESSION['correo'])
 
 // Send the email
 if (mail($to, $subject, $body, $headers)) {
-    echo "Email sent successfully!";
+    //header("Location: index.php");
+    $_SESSION['carrito'] = [];
+    echo "<script>window.close();</script>";
 } else {
     echo "Email sending failed.";
 }

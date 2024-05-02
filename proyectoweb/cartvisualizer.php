@@ -7,7 +7,7 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="principal.css?1.3">
+    <link rel="stylesheet" href="principal.css?1.5">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>RAGE</title>
 </head>
@@ -35,34 +35,51 @@
 
     <h2>Carrito de Compras</h2>
     <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        if (isset($_SESSION['carrito'])) {
-                            foreach ($_SESSION['carrito'] as $boton_id => $producto) {
-                                echo "<tr>";
-                                echo "<td>{$producto['NombreProd']}</td>";
-                                echo "<td>$ {$producto['PrecioProduct']}</td>";
-                                echo "<td>{$producto['Cantidad']}</td>";
-                                echo "<td>$ {$producto['Subtotal']}</td>";
-                                echo "</tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='5'>El carrito está vacío</td></tr>";
-                        }
-                    ?>
-                </tbody>
-            </table>
-                        <a href="pdf.php" target="_blank" class="boton" class="nav-link"><i class="fa-solid fa-file-pdf"></i></a>
-                </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                $total = 0; // Inicializamos el total en 0
+                if (isset($_SESSION['carrito'])) {
+                    foreach ($_SESSION['carrito'] as $boton_id => $producto) {
+                        echo "<tr>";
+                        echo "<td>{$producto['NombreProd']}</td>";
+                        echo "<td>$ {$producto['PrecioProduct']}</td>";
+                        echo "<td>{$producto['Cantidad']}</td>";
+                        echo "<td>$ {$producto['Subtotal']}</td>";
+                        echo "<td>";
+                        echo "<a href='modify.php?action=add&id={$boton_id}' class='nav-link'><i class='fa-solid fa-plus'></i></a> ";
+                        echo "<a href='modify.php?action=remove&id={$boton_id}' class='nav-link'><i class='fa-solid fa-minus'></i></a> ";
+                        echo "<a href='modify.php?action=delete&id={$boton_id}' class='nav-link'><i class='fa-solid fa-trash'></i></a>";
+                        echo "</td>";
+                        echo "</tr>";
+                        $total += $producto['Subtotal']; // Sumamos al total el subtotal de cada producto
+                    }
+                } else {
+                    echo "<tr><td colspan='5'>El carrito está vacío</td></tr>";
+                }
+            ?>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"><strong>Total</strong></td>
+                <td><strong>$ <?php echo $total; ?></strong></td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<div class="botonpagar">
+    <a href="pdf.php" class="btn-pdf">Pagar<i class="fa-solid fa-file-pdf"></i></a>
+</div>
     <footer class="footer">
         <div class="contenedor">
             <div class="row">

@@ -3,20 +3,16 @@
     session_start();
         
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Get the submitted values
         $nameprod = $_POST['nameprod'];
         $descprod = $_POST['descprod'];
         $costo = $_POST['costo'];
         $categ = $_POST['categ'];
         $urlproduct = $_POST['urlproduct'];
     
-        // Get the original values from the database
         $original_values = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM Producto WHERE ID_prod = '$id'"));
     
-        // Counter to track the number of changes
         $changes = 0;
     
-        // Compare the submitted values with the original values
         if ($nameprod != $original_values['NombreProd']) {
             $changes++;
         }
@@ -33,7 +29,6 @@
             $changes++;
         }
     
-        // Check if more than one field has been modified
         if ($changes > 1) {
             echo "Error: Only one field can be modified at a time.";
         } else {
