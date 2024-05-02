@@ -71,7 +71,7 @@ if(isset($_SESSION['username']) && $_SESSION['correo'])
             $pdf->Cell(40, 5, $producto['NombreProd'], 1, 0, "L");
             $pdf->Cell(20, 5, "$" . $producto['PrecioProduct'], 1, 0, "L");
             $pdf->Cell(20, 5, $producto['Cantidad'], 1, 0, "L");
-            $iva = $producto['PrecioProduct'] * 0.16;
+            $iva = $producto['Subtotal'] * 0.16;
             $pdf->Cell(20, 5, "$" . $iva, 1, 0, "L");
             $pdf->Cell(25, 5, "$" . $producto['Subtotal'], 1, 1, "L");
             $Total += $producto['Subtotal'] + $iva;
@@ -135,9 +135,9 @@ if(isset($_SESSION['username']) && $_SESSION['correo'])
 
 // Send the email
 if (mail($to, $subject, $body, $headers)) {
-    //header("Location: index.php");
+    header("Location: index.php");
     $_SESSION['carrito'] = [];
-    echo "<script>window.close();</script>";
+    //echo "<script>window.close();</script>";
 } else {
     echo "Email sending failed.";
 }
