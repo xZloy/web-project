@@ -26,7 +26,7 @@
                 <?php if(isset($_SESSION['username'])): ?>
                 <a href="perfil.php" class="nav-link"><i class="fa-solid fa-user"></i></a>
                 <a href="logout.php" class="nav-link"><i class="fa-solid fa-right-from-bracket"></i></a>
-                <a href="cartvisualizer" class="nav-link"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="cartvisualizer.php" class="nav-link"><i class="fa-solid fa-cart-shopping"></i></a>
                 <?php else: ?>
                 <a href="logform.html" class="nav-link">Iniciar sesión</a>
                 <a href="regform.html" class="nav-link">Registrarse</a>

@@ -601,4 +601,47 @@ div.galeria-prods img{
 .btn-pdf i {
     margin-left: 5px;
 }
+.search-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
 
+.search-container input[type="text"],
+.search-container button {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.search-container input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    max-width: 100%;
+}
+
+.search-container button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-container button:hover {
+    background-color: #45a049;
+}
+
+.search-container button i {
+    font-size: 16px;
+}
+
+/* Estilos adicionales para hacer el campo de búsqueda responsivo */
+@media screen and (max-width: 600px) {
+    .search-container input[type="text"] {
+        width: 100%;
+    }
+}

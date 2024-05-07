@@ -56,7 +56,7 @@
                     atemporal y la atención al detalle. Inspiramos un estilo de vida 
                     minimalista, donde cada prenda expresa 
                     individualidad y sofisticación.</p>
-                     <img src="RAGE_Shirts.png" alt="RAGE">
+                     <img src="img/RAGE_Shirts.png" alt="RAGE">
             </div>
             <div class="caja-vision">
                 <h2>Vision</h2>
@@ -65,7 +65,7 @@
                     por ser reconocidos como líderes en la industria de la moda por nuestra 
                     innovación en la impresión de alta calidad y nuestra gama de colores 
                     neutros que trascienden las tendencias pasajeras.</p>
-                    <img src="RAGE_GIW.png" alt="RAGE">
+                    <img src="img/RAGE_GIW.png" alt="RAGE">
             </div>
         </div>
     </section>     

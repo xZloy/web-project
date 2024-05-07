@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.11">
     <title>Registrar producto</title>
-    <link rel="stylesheet" href="principal.css?1.2">
+    <link rel="stylesheet" href="principal.css?1.3">
     <link rel="stylesheet" href="estilo.css?1.2">
     
 </head>
@@ -32,6 +32,25 @@
                         <a href="logout.php" class="nav-link"><i class="fa-solid fa-right-from-bracket"></i></a>
                 </nav>
             </header>
+            <div class="search-container">
+                <form action="admin.php?adminID=1" method="GET">
+                    <input type="text" placeholder="Buscar..." name="search">
+                    <button type="submit"><i class="fa-solid fa-search"></i></button>
+                </form>
+            </div>
+            <?php  
+                /*$sql = "SELECT * FROM Producto WHERE 1";
+
+                if(isset($_GET['search']) && !empty($_GET['search'])) {
+                    $search = $_GET['search'];
+                    $sql .= " AND (NombreProd LIKE '%$search%' OR DescProd LIKE '%$search%' OR PrecioProduct LIKE '%$search%' OR ID_Cat LIKE '%$search%' OR IMG_Prod LIKE '%$search%')";
+                }
+
+                $result = mysqli_query($con, $sql);
+                while($row = mysqli_fetch_array($result)){ 
+                    
+                }*/
+            ?>
             <div class="product-table-container">
                 <table class="product-table">
                 <thead>
@@ -117,17 +136,17 @@
                                 while($row = mysqli_fetch_array($sql)){ 
                         ?>
                     <form action="editarprod.php" method="post">
-                        <input type="hidden" name="id" placeholder="<?php echo $row['ID_prod']; ?>">
+                        <input type="hidden" name="id" value="<?php echo $row['ID_prod']; ?>">
                         <label>Nombre del producto</label>
-                        <input type="text" name="nameprod"  placeholder="<?php echo $row['NombreProd']; ?>" require>
+                        <input type="text" name="nameprod" value="<?php echo $row['NombreProd']; ?>">
                         <label>Descripcion</label>
-                        <input type="text" name="descprod" placeholder="<?php echo $row['DescProd']; ?>" required>
+                        <input type="text" name="descprod" value="<?php echo $row['DescProd']; ?>">
                         <label>Precio actual</label>
-                        <input type="text" name="costo" placeholder="<?php echo $row['PrecioProduct']; ?>" required>
+                        <input type="text" name="costo" value="<?php echo $row['PrecioProduct']; ?>">
                         <label>Categoria actual</label>
-                        <input type="text" name="categ"  placeholder="<?php echo $row['ID_Cat']; ?>" required>
+                        <input type="text" name="categ" value="<?php echo $row['ID_Cat']; ?>">
                         <label>URL actual</label>
-                        <input type="text" name="urlproduct" placeholder="<?php echo $row['IMG_Prod']; ?>" required>
+                        <input type="text" name="urlproduct" value="<?php echo $row['IMG_Prod']; ?>">
                         <input type="submit" value="Editar producto">
                     </form>
                 </div>
