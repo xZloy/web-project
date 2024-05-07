@@ -6,7 +6,6 @@
         $boton_id = $_POST['boton_id'];
 
         // Realizar la consulta SQL para obtener la información del producto
-        // Aquí asumo que tienes una tabla llamada 'Producto' con campos como 'NombreProd', 'DescProd', 'PrecioProd', etc.
         include 'conn.php';
         $sql = mysqli_query($con, "SELECT * FROM producto WHERE ID_prod = $producto_id");
         $producto = mysqli_fetch_array($sql);
