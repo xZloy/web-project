@@ -604,13 +604,13 @@ div.galeria-prods img{
 .search-container {
     margin-top: 20px;
     margin-bottom: 20px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
-.search-container input[type="text"],
-.search-container button {
-    display: inline-block;
-    vertical-align: middle;
+.search-container form {
+    display: flex;
+    align-items: center;
 }
 
 .search-container input[type="text"] {
@@ -623,7 +623,7 @@ div.galeria-prods img{
 
 .search-container button {
     padding: 10px 15px;
-    background-color: #4CAF50;
+    background-color: #813109;
     color: white;
     border: none;
     border-radius: 5px;
@@ -632,7 +632,7 @@ div.galeria-prods img{
 }
 
 .search-container button:hover {
-    background-color: #45a049;
+    background-color: #5B1F00;
 }
 
 .search-container button i {

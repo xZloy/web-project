@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.11">
     <title>Registrar producto</title>
-    <link rel="stylesheet" href="principal.css?1.3">
+    <link rel="stylesheet" href="principal.css?1.4">
     <link rel="stylesheet" href="estilo.css?1.2">
     
 </head>
@@ -19,58 +19,54 @@
         if(isset($_GET['adminID'])){
             $adminID = $_GET['adminID'];
         }
-        include 'conn.php';
-        if($adminID == 1)
-        {
-            ?>
+        //include 'conn.php';
+        if($adminID == 1) {
+            // Si toma por GET search como variable entonces muestra el if, sino muestra el else vamoestral
+            if(isset($_GET['search'])) {
+                $search = $_GET['search'];
+                // Consulta SQL con filtro de búsqueda
+                $sql = mysqli_query($con,"SELECT * FROM Producto WHERE ID_prod LIKE '%$search%' OR NombreProd = '%$search%' OR DescProd 
+                LIKE '%$search%' OR PrecioProduct LIKE '%$search%' OR ID_Cat LIKE '%$search%' OR IMG_Prod LIKE '%$search%'");
+
+            } else {
+                // Consulta SQL sin filtro de búsqueda
+                $sql = mysqli_query($con, "SELECT * FROM Producto");
+            }
+    ?>
             <header>
                 <div class="logo">
-                <a href="admin.php?adminID=1"><img src="img/RAGE_LOGO_CAFE_V1.png" alt="Logo de RAGE"></a>
+                    <a href="admin.php?adminID=1"><img src="img/RAGE_LOGO_CAFE_V1.png" alt="Logo de RAGE"></a>
                 </div>
                 <nav>
-                        <a href="admin.php?adminID=2" class="nav-link">Registrar productos</a>
-                        <a href="logout.php" class="nav-link"><i class="fa-solid fa-right-from-bracket"></i></a>
+                    <a href="admin.php?adminID=2" class="nav-link">Registrar productos</a>
+                    <a href="logout.php" class="nav-link"><i class="fa-solid fa-right-from-bracket"></i></a>
                 </nav>
             </header>
             <div class="search-container">
-                <form action="admin.php?adminID=1" method="GET">
+                <form action="admin.php" method="GET">
+                    <input type="hidden" name="adminID" value="1">
                     <input type="text" placeholder="Buscar..." name="search">
                     <button type="submit"><i class="fa-solid fa-search"></i></button>
                 </form>
             </div>
-            <?php  
-                /*$sql = "SELECT * FROM Producto WHERE 1";
-
-                if(isset($_GET['search']) && !empty($_GET['search'])) {
-                    $search = $_GET['search'];
-                    $sql .= " AND (NombreProd LIKE '%$search%' OR DescProd LIKE '%$search%' OR PrecioProduct LIKE '%$search%' OR ID_Cat LIKE '%$search%' OR IMG_Prod LIKE '%$search%')";
-                }
-
-                $result = mysqli_query($con, $sql);
-                while($row = mysqli_fetch_array($result)){ 
-                    
-                }*/
-            ?>
             <div class="product-table-container">
                 <table class="product-table">
-                <thead>
-                    <tr>
-                        <th class="header">ID</th>
-                        <th class="header">Nombre</th>
-                        <th class="header">Descripción</th>
-                        <th class="header">Precio</th>
-                        <th class="header">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                <?php  
-                    $sql = mysqli_query($con, "SELECT * FROM Producto");
-                    while($row = mysqli_fetch_array($sql)){ 
+                    <thead>
+                        <tr>
+                            <th class="header">ID</th>
+                            <th class="header">Nombre</th>
+                            <th class="header">Descripción</th>
+                            <th class="header">Precio</th>
+                            <th class="header">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php  
+                            while($row = mysqli_fetch_array($sql)){ 
                         ?>
                         <tr class="product-row">
                             <td class="id"><?php echo $row['ID_prod']; ?></td>
-                            <td class="name""><?php echo $row['NombreProd']; ?></td>
+                            <td class="name"><?php echo $row['NombreProd']; ?></td>
                             <td class="description"><?php echo $row['DescProd']; ?></td>
                             <td class="price">$<?php echo $row['PrecioProduct']; ?></td>
                             <td class="actions">
@@ -78,10 +74,10 @@
                                 <a href="eliminar_producto.php?id=<?php echo $row['ID_prod']; ?>" class="nav-link"><i class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-    </div>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
     <?php } 
         else if($adminID == 2)
         {
