@@ -13,6 +13,7 @@
     <title>RAGE productos</title>
     <link rel="stylesheet" href="principal.css?1.2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>
@@ -47,13 +48,16 @@
                 <img src="<?php echo $row['IMG_Prod']?>" alt="RAGE TSHIRT">
             </div>
             <div class="pie-prods">
-                <p><?php echo $row['NombreProd']?><br/><?php echo $row['DescProd']?>
-                <br>$<?php echo $row['PrecioProduct']?></p>
-                <form action="agregar_al_carrito.php" method="post">
-                    <input type="hidden" name="producto_id" value="<?php echo $row['ID_prod']?>">
-                    <input type="hidden" name="boton_id" value="boton_<?php echo $row['ID_prod']?>">
-                    <button type="submit" class="agregar-carrito">Agregar al carrito</button>
-                </form>
+                    <p><?php echo $row['NombreProd'] ?><br/><?php echo $row['DescProd'] ?><br>$<?php echo $row['PrecioProduct'] ?></p>
+                <?php if(isset($_SESSION['username'])): ?>
+                    <form action="agregar_al_carrito.php" method="post">
+                        <input type="hidden" name="producto_id" value="<?php echo $row['ID_prod'] ?>">
+                        <input type="hidden" name="boton_id" value="boton_<?php echo $row['ID_prod'] ?>">
+                        <button type="submit" class="agregar-carrito">Agregar al carrito</button>
+                    </form>
+                <?php else: ?>
+                    <a href="logform.html" class="nav-link">Agregar al carrito</a>
+                <?php endif; ?>
             </div>
         </div>
         <?php } ?>
@@ -99,5 +103,26 @@
             </div>
         </div>
     </footer>
+    <script>
+            $(document).ready(function(){
+                $(".agregar-carrito").click(function(event){
+                    event.preventDefault(); // Prevenir la recarga de la página
+                    var form = $(this).closest('form');
+                    var formData = form.serialize(); // Serializar los datos del formulario
+
+                    $.ajax({
+                        type: "POST",
+                        url: "agregar_al_carrito.php",
+                        data: formData,
+                        success: function(response) {
+                            console.log("Producto agregado al carrito!");
+                        },
+                        error: function() {
+                            console.log("Hubo un error al agregar el producto al carrito.");
+                        }
+                    });
+                });
+            });
+</script>
 </body>
 </html>

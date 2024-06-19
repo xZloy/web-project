@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,59 +23,58 @@
                 <?php if(isset($_SESSION['username'])): ?>
                 <a href="perfil.php" class="nav-link"><i class="fa-solid fa-user"></i></a>
                 <a href="logout.php" class="nav-link"><i class="fa-solid fa-right-from-bracket"></i></a>
-                
-                <?php else: ?>
-                <a href="logform.html" class="nav-link">Iniciar sesión</a>
-                <a href="regform.html" class="nav-link">Registrarse</a>
-                <?php endif; ?>
-                
-        </nav>
-        
-    </header>
+            <?php else: ?>
+            <a href="logform.html" class="nav-link">Iniciar sesión</a>
+            <a href="regform.html" class="nav-link">Registrarse</a>
+            <?php endif; ?>
+            
+    </nav>
+    
+</header>
 
-    <h2>Carrito de Compras</h2>
-    <div class="table-container">
-    <table>
-        <thead>
-            <tr>
-                <th>Producto</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Subtotal</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                $total = 0; // Inicializamos el total en 0
-                if (isset($_SESSION['carrito'])) {
-                    foreach ($_SESSION['carrito'] as $boton_id => $producto) {
-                        echo "<tr>";
-                        echo "<td>{$producto['NombreProd']}</td>";
-                        echo "<td>$ {$producto['PrecioProduct']}</td>";
-                        echo "<td>{$producto['Cantidad']}</td>";
-                        echo "<td>$ {$producto['Subtotal']}</td>";
-                        echo "<td>";
-                        echo "<a href='modify.php?action=add&id={$boton_id}' class='nav-link'><i class='fa-solid fa-plus'></i></a> ";
-                        echo "<a href='modify.php?action=remove&id={$boton_id}' class='nav-link'><i class='fa-solid fa-minus'></i></a> ";
-                        echo "<a href='modify.php?action=delete&id={$boton_id}' class='nav-link'><i class='fa-solid fa-trash'></i></a>";
-                        echo "</td>";
-                        echo "</tr>";
-                        $total += $producto['Subtotal']; // Sumamos al total el subtotal de cada producto
-                    }
-                } else {
-                    echo "<tr><td colspan='5'>El carrito está vacío</td></tr>";
+<h2>Carrito de Compras</h2>
+<div class="table-container">
+<table>
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+            $total = 0; // Inicializamos el total en 0
+            if (isset($_SESSION['carrito'])) {
+                foreach ($_SESSION['carrito'] as $boton_id => $producto) {
+                    echo "<tr>";
+                    echo "<td>{$producto['NombreProd']}</td>";
+                    echo "<td>$ {$producto['PrecioProduct']}</td>";
+                    echo "<td>{$producto['Cantidad']}</td>";
+                    echo "<td>$ {$producto['Subtotal']}</td>";
+                    echo "<td>";
+                    echo "<a href='modify.php?action=add&id={$boton_id}' class='nav-link'><i class='fa-solid fa-plus'></i></a> ";
+                    echo "<a href='modify.php?action=remove&id={$boton_id}' class='nav-link'><i class='fa-solid fa-minus'></i></a> ";
+                    echo "<a href='modify.php?action=delete&id={$boton_id}' class='nav-link'><i class='fa-solid fa-trash'></i></a>";
+                    echo "</td>";
+                    echo "</tr>";
+                    $total += $producto['Subtotal']; // Sumamos al total el subtotal de cada producto
                 }
-            ?>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3"><strong>Total</strong></td>
-                <td><strong>$ <?php echo $total; ?></strong></td>
-                <td></td>
-            </tr>
-        </tfoot>
-    </table>
+            } else {
+                echo "<tr><td colspan='5'>El carrito está vacío</td></tr>";
+            }
+        ?>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3"><strong>Total</strong></td>
+            <td><strong>$ <?php echo $total; ?></strong></td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>
 </div>
 <div class="botonpagar">
     <a href="pdf.php" class="btn-pdf">Pagar<i class="fa-solid fa-file-pdf"></i></a>
@@ -113,10 +112,9 @@
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/rageshop.mx/"><i class="fab fa-instagram"></i></a>
                     </div>
-                    
-                </div>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 </body>
 </html>

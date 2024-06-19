@@ -5,6 +5,7 @@ if(isset($_SESSION['username']) && $_SESSION['correo'])
 
     $user = $_SESSION['username'];
     $email = $_SESSION['correo'];
+    $nombre = $_SESSION['nombre'];
 
     require('fpdf/fpdf.php');
     $x = 10;
@@ -58,8 +59,8 @@ if(isset($_SESSION['username']) && $_SESSION['correo'])
     $pdf->Cell(40,10,'Nombre del producto',1,0,'c');
     $pdf->Cell(20,10,'Precio ',1,0,'c');
     $pdf->Cell(20,10,'Cantidad',1,0,'c');
-    $pdf->Cell(20,10,'iva',1,0,'c');
-    $pdf->Cell(25,10,'Subtotal',1,1,'c');
+    //$pdf->Cell(20,10,'IVA',1,0,'c');
+    $pdf->Cell(20,10,'Subtotal',1,1,'c');
 
     $Total = 0;
 
@@ -72,22 +73,23 @@ if(isset($_SESSION['username']) && $_SESSION['correo'])
             $pdf->Cell(20, 5, "$" . $producto['PrecioProduct'], 1, 0, "L");
             $pdf->Cell(20, 5, $producto['Cantidad'], 1, 0, "L");
             $iva = $producto['Subtotal'] * 0.16;
-            $pdf->Cell(20, 5, "$" . $iva, 1, 0, "L");
-            $pdf->Cell(25, 5, "$" . $producto['Subtotal'], 1, 1, "L");
-            $Total += $producto['Subtotal'] + $iva;
+            $pdf->Cell(20, 5, "$" . $producto['Subtotal'], 1, 1, "L");
+            //$pdf->Cell(25, 5, "$" . $iva, 1, 0, "L");
+            
+            $Total += $producto['Subtotal']; //+ $iva;
         }
 
         $IVA = $Total * 0.16;
         $sub = $Total + $IVA;
 
         $pdf->SetXY(25, 170);
-        $pdf->Cell(30, 5, "Total: $ " . $Total, "", 0, "L");
+        $pdf->Cell(30, 5, "Subtotal: $ " . $Total, "", 0, "L");
 
         $pdf->SetXY(25, 175);
         $pdf->Cell(30, 5, "IVA: $ " . $IVA, "", 0, "L");
 
         $pdf->SetXY(25, 180);
-        $pdf->Cell(30, 5, "Subtotal: $" . $sub, "", 0, "L");
+        $pdf->Cell(30, 5, "Total: $" . $sub, "", 0, "L");
     } else {
         $pdf->SetXY(25, 95);
         $pdf->Cell(0, 10, "Carrito vacio", 0, 1);
@@ -95,9 +97,9 @@ if(isset($_SESSION['username']) && $_SESSION['correo'])
 
     //footer
     $pdf->SetXY($x+10,200);
-    $pdf->Cell(0,5,'CONDICIONES & FORMA DE PAGO',0,0,'C');
+    $pdf->Cell(0,5,'CONDICIONES DE PAGO',0,0,'C');
     $pdf->SetXY($x+10,205);
-    $pdf->Cell(0,5,utf8_decode('El pago se realizará en un lapso de 15 días'),0,0,'C');
+    $pdf->Cell(0,5,utf8_decode('Esta orden de pago caducará en 15 días'),0,0,'C');
     $pdf->Image('./img/barras.png',70,215,80,0,'PNG','');
     //Output the document
     $nombredoc = 'Resumen'.$user.Date('F_j_Y').'.'.'pdf';

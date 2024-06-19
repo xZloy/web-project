@@ -645,3 +645,46 @@ div.galeria-prods img{
         width: 100%;
     }
 }
+
+
+
+/*ESTILOS TABLAS */
+.Table {
+    font-family: Arial, sans-serif;
+    width: 80%;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table_header {
+    background-color: #f0f0f0;
+    background-color: #D1BB9E;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    border-radius: 5px 5px 0 0;
+}
+
+.table_header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.table_body {
+    padding: 10px;
+}
+
+#lista-usuarios {
+    list-style-type: none;
+    padding: 0;
+}
+
+#lista-usuarios li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+#lista-usuarios li:last-child {
+    border-bottom: none;
+}
